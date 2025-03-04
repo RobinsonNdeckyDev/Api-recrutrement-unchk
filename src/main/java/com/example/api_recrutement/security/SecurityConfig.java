@@ -44,6 +44,7 @@ public class SecurityConfig {
 
                         // Routes accessibles pour les images
                         .requestMatchers("/api/files/download/**").permitAll()
+                        .requestMatchers("/api/files/**").permitAll()
                         .requestMatchers("/uploads/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/uploads/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/annonces/**").permitAll()

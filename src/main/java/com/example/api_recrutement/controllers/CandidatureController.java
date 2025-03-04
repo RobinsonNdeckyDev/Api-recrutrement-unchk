@@ -2,6 +2,7 @@ package com.example.api_recrutement.controllers;
 
 import com.example.api_recrutement.models.Candidature;
 import com.example.api_recrutement.services.CandidatureService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,17 +37,15 @@ public class CandidatureController {
 
     // Crée une nouvelle candidature
     @PostMapping
-    public ResponseEntity<Candidature> createCandidature(
-            @RequestBody CandidatureDTO candidatureDTO) {
-
+    public ResponseEntity<Candidature> createCandidature(@Valid @RequestBody CandidatureDTO candidatureDTO) {
         Candidature candidature = candidatureService.createCandidature(
                 candidatureDTO.getUserId(),
                 candidatureDTO.getAnnonceId(),
                 candidatureDTO.getDocumentIds()
         );
-
         return ResponseEntity.status(HttpStatus.CREATED).body(candidature);
     }
+
 
     // Modifie une candidature existante
     @PutMapping("/{id}")
